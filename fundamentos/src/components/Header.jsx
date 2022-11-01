@@ -1,7 +1,7 @@
-export default function Header() {
+export default function Header(props) {
     return (
         <header>
-            <h1>Fundamentos de next.js & React</h1>
+            <h1>{props.titulo}</h1>
         </header>
     )
 }
