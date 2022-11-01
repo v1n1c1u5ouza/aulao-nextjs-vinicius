@@ -3,7 +3,7 @@ import styles from '../styles/Navegator.module.css'
 
 export default function Navegator(props) {
     return (
-        <Link  href={props.destiny}>
+        <Link  href={props.destiny} passHref>
             <div className={styles.navegator} style={{
                 backgroundColor: props.cor ?? 'dodgerblue' 
             }}>
