@@ -7,7 +7,7 @@ export default function ClientForCode() {
     return(
         <Layout titulo="Navegação dinâmica">
             <div>Códico = {router.query.code}</div>
-            <div>filial = {router.query.filial}</div>
+            <div>filial  = {router.query.filial}</div>
         </Layout>
     )
 }

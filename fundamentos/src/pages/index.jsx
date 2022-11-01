@@ -15,6 +15,7 @@ export default function Initial() {
            <Navegator text="jsx" destiny="/jsx" cor="crimson"/> 
            <Navegator text="Navegação #01" destiny="/navegation/" cor="green"/> 
            <Navegator text="Navegação #02" destiny="/client/SP-2/321" cor="blue" />
+           <Navegator text="Componente com Estado" destiny="/state" cor="pink" />
         </div>
     )
 }
