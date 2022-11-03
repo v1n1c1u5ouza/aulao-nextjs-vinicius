@@ -1,4 +1,6 @@
 import Client from "../core/Client";
+import {editIcon} from "./icons"
+import {deleteIcon} from "./icons"
 
 interface ChartsProps {
     clients: Client[]
@@ -12,6 +14,7 @@ export default function Charts(props: ChartsProps) {
                 <th className="text-left p-4">Codigo</th>
                 <th className="text-left p-4">Nome</th>
                 <th className="text-left p-4">Idade</th>
+                <th className="p-4">Ações</th>
             </tr>
         )
     }
@@ -24,9 +27,31 @@ export default function Charts(props: ChartsProps) {
                     <td className="text-left p-4">{client.id}</td>
                     <td className="text-left p-4">{client.name}</td>
                     <td className="text-left p-4">{client.age}</td>
+                    {renderActions(client)}
                </tr>
             )
         }) 
+    }
+
+    function renderActions(client: Client) {
+        return(
+            <td className="flex">
+                <button className={`
+                    flex justify-center items-center
+                    rounded-full p-2 m-1
+                    hover:bg-purple-400
+                `}>
+                    {editIcon}
+                    </button>
+                <button className={`
+                    flex justify-center items-center
+                    rounded-full p-2 m-1
+                    hover:bg-purple-400
+                `}>
+                    {deleteIcon}
+                </button>
+            </td>
+        )
     }
 
     return (
