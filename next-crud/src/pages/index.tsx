@@ -1,9 +1,18 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Layout from '../components/Layout'
-import styles from '../styles/Home.module.css'
+import Charts from '../components/Chart'
+import Client from '../core/Client'
 
 export default function Home() {
+
+  const Clients = [
+    new Client('Ana', 34, '1'),
+    new Client('Bia', 45, '2'),
+    new Client('Carlos', 23, '3'),
+    new Client('Pedro', 54, '4')
+  ]
+
   return (
     <div className={`
       flex justify-center items-center h-screen
@@ -11,7 +20,7 @@ export default function Home() {
       text-white
     `}>
       <Layout title="Cadastro Simples">
-        <span>Conteudo</span>
+        <Charts clients={Clients}></Charts>
       </Layout>
     </div>
   )
