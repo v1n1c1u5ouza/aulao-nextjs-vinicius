@@ -16,8 +16,8 @@ export default function Charts(props: ChartsProps) {
             <tr>
                 <th className="text-left p-4">Codigo</th>
                 <th className="text-left p-4">Nome</th>
-                <th className="txt-left p-4">Idade</th>
-                <th className="p-4">Ações</th>
+                <th className="text-left p-4">Idade</th>
+                {<th className="p-4">Ações</th>}
             </tr>
         )
     }
@@ -30,7 +30,7 @@ export default function Charts(props: ChartsProps) {
                     <td className="text-left p-4">{client.id}</td>
                     <td className="text-left p-4">{client.name}</td>
                     <td className="text-left p-4">{client.age}</td>
-                    {renderActions(client)}
+                    { showActions ? renderActions(client) : false}
                </tr>
             )
         }) 
@@ -40,7 +40,7 @@ export default function Charts(props: ChartsProps) {
         return(
             <td className="flex justify-center">
                 {props.selectedClient ? (
-                <button className={`
+                <button onClick={() => props.selectedClient?.(client)} className={`
                     flex justify-center items-center
                     rounded-full p-2 m-1
                     hover:bg-purple-400
@@ -49,7 +49,7 @@ export default function Charts(props: ChartsProps) {
                     </button>
                 ) : false}
                 {props.deleteClient ? (
-                <button className={`
+                <button onClick={() => props.deleteClient?.(client)} className={`
                     flex justify-center items-center
                     rounded-full p-2 m-1
                     hover:bg-purple-400
