@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Layout from '../components/Layout'
 import Charts from '../components/Chart'
 import Client from '../core/Client'
+import Button from '../components/Button'
 
 export default function Home() {
 
@@ -28,6 +29,9 @@ export default function Home() {
       text-white
     `}>
       <Layout title="Cadastro Simples">
+        <div className="flex justify-end">
+        <Button cor='purple' className={`mb-4`}>Novo Cliente</Button>
+        </div>
         <Charts clients={Clients} 
         selectedClient={selectedClient}
         deleteClient={deleteClient}
