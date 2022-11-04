@@ -1,19 +1,22 @@
 import Client from "../core/Client";
-import {editIcon} from "./icons"
-import {deleteIcon} from "./icons"
+import { deleteIcon, editIcon } from "./icons"
 
 interface ChartsProps {
     clients: Client[]
+    selectedClient? : (client: Client) => void
+    deleteClient?: (client: Client) => void
 }
 
 export default function Charts(props: ChartsProps) {
+
+    const showActions = props.selectedClient || props.selectedClient
 
     function renderHeader() {
         return (
             <tr>
                 <th className="text-left p-4">Codigo</th>
                 <th className="text-left p-4">Nome</th>
-                <th className="text-left p-4">Idade</th>
+                <th className="txt-left p-4">Idade</th>
                 <th className="p-4">Ações</th>
             </tr>
         )
@@ -23,7 +26,7 @@ export default function Charts(props: ChartsProps) {
         return props.clients?.map((client, i)=>{
             return (
                 <tr key={client.id}
-                className={`${i % 2 === 0 ? 'bg-purple-500' : 'bg-purple-600'}`}>
+                className={`${i % 2 === 0 ? 'bg-gray-500' : 'bg-gray-600'}`}>
                     <td className="text-left p-4">{client.id}</td>
                     <td className="text-left p-4">{client.name}</td>
                     <td className="text-left p-4">{client.age}</td>
@@ -35,7 +38,8 @@ export default function Charts(props: ChartsProps) {
 
     function renderActions(client: Client) {
         return(
-            <td className="flex">
+            <td className="flex justify-center">
+                {props.selectedClient ? (
                 <button className={`
                     flex justify-center items-center
                     rounded-full p-2 m-1
@@ -43,6 +47,8 @@ export default function Charts(props: ChartsProps) {
                 `}>
                     {editIcon}
                     </button>
+                ) : false}
+                {props.deleteClient ? (
                 <button className={`
                     flex justify-center items-center
                     rounded-full p-2 m-1
@@ -50,6 +56,7 @@ export default function Charts(props: ChartsProps) {
                 `}>
                     {deleteIcon}
                 </button>
+                ): false}
             </td>
         )
     }
