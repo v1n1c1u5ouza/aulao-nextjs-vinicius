@@ -4,6 +4,7 @@ import Layout from '../components/Layout'
 import Charts from '../components/Chart'
 import Client from '../core/Client'
 import Button from '../components/Button'
+import Form from '../components/Form'
 
 export default function Home() {
 
@@ -32,10 +33,11 @@ export default function Home() {
         <div className="flex justify-end">
         <Button cor='purple' className={`mb-4`}>Novo Cliente</Button>
         </div>
-        <Charts clients={Clients} 
+        {<Charts clients={Clients} 
         selectedClient={selectedClient}
         deleteClient={deleteClient}
-        ></Charts>
+        ></Charts>}
+        <Form client={Clients[1]}></Form>
       </Layout>
     </div>
   )
