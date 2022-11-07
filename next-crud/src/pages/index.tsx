@@ -5,6 +5,7 @@ import Charts from '../components/Chart'
 import Client from '../core/Client'
 import Button from '../components/Button'
 import Form from '../components/Form'
+import { useState } from 'react'
 
 export default function Home() {
 
@@ -23,21 +24,40 @@ export default function Home() {
     console.log(`Excluir... ${client.name}`)
   }
 
+  function saveClient(client: Client) {
+    console.log(client)
+    setVisible('chart')
+  }
+
+  const [visible, setVisible] = useState< 'chart' | 'form' >('chart')
+
   return (
     <div className={`
       flex justify-center items-center h-screen
       bg-gradient-to-r from-blue-900 to-purple-900
       text-white
     `}>
+      
       <Layout title="Cadastro Simples">
+        {visible === 'chart' ? (
+      <>
         <div className="flex justify-end">
-        <Button cor='purple' className={`mb-4`}>Novo Cliente</Button>
+        <Button cor='purple' className={`mb-4`}
+        onClick={() => setVisible('form')}>
+          Novo Cliente
+        </Button>
         </div>
         {<Charts clients={Clients} 
         selectedClient={selectedClient}
         deleteClient={deleteClient}
         ></Charts>}
-        <Form client={Clients[1]}></Form>
+      </>
+        ) : (
+          <Form client={Clients[1]} 
+            clientChange={saveClient}
+            canceled={() => setVisible('chart')}
+          />
+        )}
       </Layout>
     </div>
   )
