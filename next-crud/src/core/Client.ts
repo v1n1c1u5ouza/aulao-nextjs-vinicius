@@ -1,12 +1,12 @@
 export default class Client {
-    _id: string
-    _name: string
-    _age: number
+    #id: string
+    #name: string
+    #age: number
 
     constructor(name: string, age: number, id: string = null) {
-        this._name = name
-        this._age = age
-        this._id = id
+        this.#name = name
+        this.#age = age
+        this.#id = id
     }
 
     static empty() {
@@ -14,12 +14,12 @@ export default class Client {
     }
 
     get id() {
-        return this._id
+        return this.#id
     }
     get name() {
-        return this._name
+        return this.#name
     }
     get age() {
-        return this._age
+        return this.#age
     }
 }
