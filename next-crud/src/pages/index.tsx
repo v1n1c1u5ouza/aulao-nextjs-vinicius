@@ -5,27 +5,35 @@ import Charts from '../components/Chart'
 import Client from '../core/Client'
 import Button from '../components/Button'
 import Form from '../components/Form'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import ClientRepository from '../core/clientRepository'
+import ClientCollecton from '../backend/db/clientCollection'
 
 export default function Home() {
 
-  const Clients = [
-    new Client('Ana', 34, '1'),
-    new Client('Bia', 45, '2'),
-    new Client('Carlos', 23, '3'),
-    new Client('Pedro', 54, '4')
-  ]
+  const repo: ClientRepository = new ClientCollecton
 
   const [client, setClient] = useState<Client>(Client.empty())
+  const [clients, setClients] = useState<Client[]>([])
   const [visible, setVisible] = useState< 'chart' | 'form' >('chart')
+
+  useEffect(getAll, [])
+
+  function getAll() {
+    repo.getAll().then(clients => {
+      setClients(clients)
+      setVisible('chart')
+    })
+  }
 
   function selectedClient(client: Client) {
     setClient(client)
     setVisible('form')
   }
 
-  function deleteClient(client: Client) {
-    console.log(`Excluir... ${client.name}`)
+  async function deleteClient(client: Client) {
+    await repo.delete(client)
+    getAll()
   }
 
   function newClient() {
@@ -33,9 +41,9 @@ export default function Home() {
     setVisible('form')
   }
 
-  function saveClient(client: Client) {
-    console.log(client)
-    setVisible('chart')
+  async function saveClient(client: Client) {
+    await repo.save(client)
+    getAll()
   }
 
   return (
@@ -54,7 +62,7 @@ export default function Home() {
           Novo Cliente
         </Button>
         </div>
-        {<Charts clients={Clients} 
+        {<Charts clients={clients} 
         selectedClient={selectedClient}
         deleteClient={deleteClient}
         ></Charts>}

@@ -8,7 +8,7 @@ export default class ClientCollecton implements ClientRepository {
         toFirestore(client: Client) {
             return {
                 name: client.name,
-                idade: client.age
+                age: client.age
             }
         },
         fromFirestore(snapshot: firebase.firestore.QueryDocumentSnapshot, options: firebase.firestore.SnapshotOptions): Client {
@@ -34,7 +34,8 @@ export default class ClientCollecton implements ClientRepository {
     }
 
     async getAll(): Promise<Client[]> {
-        return null   
+        const query = await this.collection().get()    
+        return query.docs.map(doc => doc.data()) ?? []
     }
 
     private collection() {
