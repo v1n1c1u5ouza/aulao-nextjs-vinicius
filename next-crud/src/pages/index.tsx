@@ -16,20 +16,27 @@ export default function Home() {
     new Client('Pedro', 54, '4')
   ]
 
+  const [client, setClient] = useState<Client>(Client.empty ())
+  const [visible, setVisible] = useState< 'chart' | 'form' >('chart')
+
   function selectedClient(client: Client) {
-    console.log(client.name)
+    setClient(client)
+    setVisible('form')
   }
 
   function deleteClient(client: Client) {
     console.log(`Excluir... ${client.name}`)
   }
 
+  function newClient(client: Client) {
+    setClient(Client.empty())
+    setVisible('form')
+  }
+
   function saveClient(client: Client) {
     console.log(client)
     setVisible('chart')
   }
-
-  const [visible, setVisible] = useState< 'chart' | 'form' >('chart')
 
   return (
     <div className={`
@@ -43,7 +50,7 @@ export default function Home() {
       <>
         <div className="flex justify-end">
         <Button cor='purple' className={`mb-4`}
-        onClick={() => setVisible('form')}>
+        onClick={newClient}>
           Novo Cliente
         </Button>
         </div>
@@ -53,7 +60,7 @@ export default function Home() {
         ></Charts>}
       </>
         ) : (
-          <Form client={Clients[1]} 
+          <Form client={client} 
             clientChange={saveClient}
             canceled={() => setVisible('chart')}
           />
