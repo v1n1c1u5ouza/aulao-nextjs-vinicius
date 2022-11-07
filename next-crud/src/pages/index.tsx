@@ -16,7 +16,7 @@ export default function Home() {
     new Client('Pedro', 54, '4')
   ]
 
-  const [client, setClient] = useState<Client>(Client.empty ())
+  const [client, setClient] = useState<Client>(Client.empty())
   const [visible, setVisible] = useState< 'chart' | 'form' >('chart')
 
   function selectedClient(client: Client) {
@@ -28,7 +28,7 @@ export default function Home() {
     console.log(`Excluir... ${client.name}`)
   }
 
-  function newClient(client: Client) {
+  function newClient() {
     setClient(Client.empty())
     setVisible('form')
   }

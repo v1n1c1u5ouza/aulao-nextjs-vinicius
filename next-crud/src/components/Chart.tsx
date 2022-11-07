@@ -1,4 +1,4 @@
-import Client from "../core/Client";
+import Client from "../core/Client"
 import { deleteIcon, editIcon } from "./icons"
 
 interface ChartsProps {
