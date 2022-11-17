@@ -1,6 +1,21 @@
 import "./Card.css";
 import React from "react";
 
+function getColor(props) {
+  if(props.red) return "Red"
+  if(props.green) return "Green"
+  if(props.blue) return "Blue"
+  if(props.purble) return "Purble"
+  return ""
+}
+
 export default (props) => {
-  return <div>Card</div>;
+  return (
+    <div className={`Card ${getColor(props)}`}>
+      <div className="Header">
+        <span className="Title">{props.title}</span>
+      </div>
+      <div className="Content">{props.children}</div>
+    </div>
+  );
 };
