@@ -1,3 +1,5 @@
+import { NUM_MAX_ALTERED, NUM_MIN_ALTERED } from "../actions/actionTypes";
+
 const initalState = {
   min: 1,
   max: 10,
