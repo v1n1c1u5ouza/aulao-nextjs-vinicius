@@ -9,19 +9,20 @@ import { changeDescription, search } from "./todoActions";
 class TodoForm extends Component {
   constructor(props) {
     super(props);
-    this.keyHanler = this.keyHanler.bind(this);
-  }
-  componentWillUnmount() {
-    this.props.search;
+    this.keyHandler = this.keyHandler.bind(this);
   }
 
-  keyHanler (e) {
+  componentWillMount() {
+    this.props.search();
+  }
+
+  keyHandler(e) {
     if (e.key === "Enter") {
       e.shiftKey ? this.props.handleSearch() : this.props.handleAdd();
     } else if (e.key === "Escape") {
       props.handleClear();
     }
-  };
+  }
 
   render() {
     return (
@@ -32,7 +33,7 @@ class TodoForm extends Component {
             className="form-control"
             placeholder="Adicione uma tarefa"
             onChange={this.props.changeDescription}
-            onKeyUp={this.keyHanler}
+            onKeyUp={this.keyHandler}
             value={this.props.description}
           />
         </Grid>
