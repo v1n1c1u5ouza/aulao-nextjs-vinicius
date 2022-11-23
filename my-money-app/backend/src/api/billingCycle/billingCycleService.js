@@ -1,7 +1,7 @@
 const BillingCycle = require("./billingCycle");
 
 BillingCycle.methods(["get", "post", "put", "delete"]);
-BillingCycle.updateOptions({ new: true, runValidatos: true });
+BillingCycle.updateOptions({ new: true, runValidators: true });
 
 BillingCycle.route("get", (req, res, next) => {
   BillingCycle.find({}, (err, docs) => {
