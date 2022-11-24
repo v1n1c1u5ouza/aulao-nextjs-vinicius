@@ -14,9 +14,9 @@ module.exports = {
   resolve: {
     extensions: ["", ".js", ".jsx"],
     alias: {
-      modules: __dirname + "node_modules",
-      jQuery: "modules/admin-lte/plugins/jQuery/jquery-2.2.3.min.js",
-      bootstrap: "modules/admin-lte/bootstrap/js/bootsstrap.js",
+      modules: __dirname + "/node_modules",
+      jquery: "modules/admin-lte/plugins/jQuery/jquery-2.2.3.min.js",
+      bootstrap: "modules/admin-lte/bootstrap/js/bootstrap.js",
     },
   },
   plugins: [
@@ -25,13 +25,13 @@ module.exports = {
       jQuery: "jquery",
       "window.jQuery": "jquery",
     }),
-    new ExtractTextPlugin("app,css"),
+    new ExtractTextPlugin("app.css"),
   ],
   module: {
     loaders: [
       {
         test: /.js[x]?$/,
-        loaders: "babel-loader",
+        loader: "babel-loader",
         exclude: /node_modules/,
         query: {
           presets: ["es2015", "react"],
@@ -39,7 +39,11 @@ module.exports = {
         },
       },
       {
-        test: /\.woff|.woff2|.tff|.eot|.svg|.png|.jpg*.*$/,
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract("style-loader", "css-loader"),
+      },
+      {
+        test: /\.woff|.woff2|.ttf|.eot|.svg|.png|.jpg*.*$/,
         loader: "file",
       },
     ],
